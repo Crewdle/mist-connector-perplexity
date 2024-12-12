@@ -1,0 +1,33 @@
+{
+  "name": "@crewdle/mist-connector-perplexity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "copy-sdk-types": "cp -r ../web-sdk-types/dist ./node_modules/@crewdle/web-sdk-types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crewdle/mist-connector-perplexity.git"
+  },
+  "keywords": [],
+  "author": "Crewdle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crewdle/mist-connector-perplexity/issues"
+  },
+  "homepage": "https://github.com/Crewdle/mist-connector-perplexity#readme",
+  "files": [
+    "dist/"
+  ],
+  "devDependencies": {
+    "@crewdle/web-sdk-types": "^1.0.19",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "openai": "^4.76.1"
+  }
+}
