@@ -18,6 +18,16 @@ export class PerplexitySearchConnector {
                 },
             ],
         });
-        return response.choices[0].message.content ?? '';
+        let result = response.choices[0].message.content ?? '';
+        const responseObj = response;
+        if (responseObj.citations && responseObj.citations.length > 0) {
+            result += '\n\nSources:';
+            let i = 1;
+            for (const citation of responseObj.citations) {
+                result += `\n\n[${i}] ${citation}`;
+                i++;
+            }
+        }
+        return result;
     }
 }
