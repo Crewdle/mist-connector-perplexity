@@ -10,11 +10,11 @@ export class PerplexitySearchConnector implements IAISearchConnector {
     });
 
     const response = await client.chat.completions.create({
-      model: 'llama-3.1-sonar-small-128k-online',
+      model: 'llama-3.1-sonar-large-128k-online',
       messages: [
         {
           role: 'system',
-          content: 'Be precise and concise.',
+          content: 'You are an intelligent assistant designed to provide concise and accurate answers based on facts from trusted sources. Prioritize clarity and relevance. If information is unavailable, say so politely.',
         },
         {
           role: 'user',
