@@ -3,13 +3,17 @@ import OpenAI from 'openai';
 import { IAISearchConnector } from '@crewdle/web-sdk-types';
 
 export class PerplexitySearchConnector implements IAISearchConnector {
-  async search(query: string, apiKey: string): Promise<string> {
-    const client = new OpenAI({
+  private client: OpenAI;
+
+  constructor(apiKey: string) {
+    this.client = new OpenAI({
       baseURL: 'https://api.perplexity.ai',
       apiKey,
     });
+  }
 
-    const response = await client.chat.completions.create({
+  async search(query: string): Promise<string> {
+    const response = await this.client.chat.completions.create({
       model: 'llama-3.1-sonar-large-128k-online',
       messages: [
         {

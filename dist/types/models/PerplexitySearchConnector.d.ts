@@ -1,4 +1,6 @@
 import { IAISearchConnector } from '@crewdle/web-sdk-types';
 export declare class PerplexitySearchConnector implements IAISearchConnector {
-    search(query: string, apiKey: string): Promise<string>;
+    private client;
+    constructor(apiKey: string);
+    search(query: string): Promise<string>;
 }
