@@ -1,11 +1,14 @@
 import OpenAI from 'openai';
 export class PerplexitySearchConnector {
-    async search(query, apiKey) {
-        const client = new OpenAI({
+    client;
+    constructor(apiKey) {
+        this.client = new OpenAI({
             baseURL: 'https://api.perplexity.ai',
             apiKey,
         });
-        const response = await client.chat.completions.create({
+    }
+    async search(query) {
+        const response = await this.client.chat.completions.create({
             model: 'llama-3.1-sonar-large-128k-online',
             messages: [
                 {
