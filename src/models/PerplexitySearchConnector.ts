@@ -14,7 +14,7 @@ export class PerplexitySearchConnector implements IAISearchConnector {
 
   async search(query: string): Promise<string> {
     const response = await this.client.chat.completions.create({
-      model: 'llama-3.1-sonar-large-128k-online',
+      model: 'sonar',
       messages: [
         {
           role: 'system',
