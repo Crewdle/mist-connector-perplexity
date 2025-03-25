@@ -7,9 +7,9 @@ export class PerplexitySearchConnector {
             apiKey,
         });
     }
-    async search(query) {
+    async search(query, modelId) {
         const response = await this.client.chat.completions.create({
-            model: 'sonar',
+            model: modelId,
             messages: [
                 {
                     role: 'system',
