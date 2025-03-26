@@ -12,9 +12,9 @@ export class PerplexitySearchConnector implements IAISearchConnector {
     });
   }
 
-  async search(query: string): Promise<string> {
+  async search(query: string, modelId: string): Promise<string> {
     const response = await this.client.chat.completions.create({
-      model: 'sonar',
+      model: modelId,
       messages: [
         {
           role: 'system',
