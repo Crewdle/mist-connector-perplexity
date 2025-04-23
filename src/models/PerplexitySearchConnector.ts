@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 
-import { IAISearchConnector } from '@crewdle/web-sdk-types';
+import { IAISearchConnector, IAISearchConnectorResult } from '@crewdle/web-sdk-types';
 
 export class PerplexitySearchConnector implements IAISearchConnector {
   private client: OpenAI;
@@ -12,7 +12,7 @@ export class PerplexitySearchConnector implements IAISearchConnector {
     });
   }
 
-  async search(query: string, modelId: string): Promise<string> {
+  async search(query: string, modelId: string): Promise<IAISearchConnectorResult> {
     const response = await this.client.chat.completions.create({
       model: modelId,
       messages: [
@@ -39,6 +39,10 @@ export class PerplexitySearchConnector implements IAISearchConnector {
       }
     }
 
-    return result;
+    return {
+      output: result,
+      inputTokens: response.usage?.prompt_tokens ?? 0,
+      outputTokens: response.usage?.completion_tokens ?? 0,
+    };
   }
 }
