@@ -13,6 +13,7 @@ export class PerplexitySearchConnector implements IAISearchConnector {
   }
 
   async search(query: string, modelId: string): Promise<IAISearchConnectorResult> {
+    console.log('PerplexitySearchConnector.search', query, modelId);
     const response = await this.client.chat.completions.create({
       model: modelId,
       messages: [
@@ -26,6 +27,7 @@ export class PerplexitySearchConnector implements IAISearchConnector {
         },
       ],
     });
+    console.log('PerplexitySearchConnector.search response');
 
     let result = response.choices[0].message.content ?? '';
 

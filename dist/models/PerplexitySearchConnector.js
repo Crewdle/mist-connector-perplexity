@@ -8,6 +8,7 @@ export class PerplexitySearchConnector {
         });
     }
     async search(query, modelId) {
+        console.log('PerplexitySearchConnector.search', query, modelId);
         const response = await this.client.chat.completions.create({
             model: modelId,
             messages: [
@@ -21,6 +22,7 @@ export class PerplexitySearchConnector {
                 },
             ],
         });
+        console.log('PerplexitySearchConnector.search response');
         let result = response.choices[0].message.content ?? '';
         const responseObj = response;
         if (responseObj.citations && responseObj.citations.length > 0) {
