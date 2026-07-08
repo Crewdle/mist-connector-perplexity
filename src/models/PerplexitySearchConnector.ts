@@ -9,6 +9,13 @@ export class PerplexitySearchConnector implements IAISearchConnector {
     this.client = new OpenAI({
       baseURL: 'https://api.perplexity.ai',
       apiKey,
+      // Perplexity (Cloudflare) returns real answers as gzip + chunked, and the
+      // node-fetch v2 layer the openai v4 SDK uses throws ERR_STREAM_PREMATURE_CLOSE
+      // decompressing that combination on Node 22 — failing every non-trivial
+      // call. Requesting identity (uncompressed) sidesteps the decompressor, the
+      // same way the cloudlet-docker proxy already does.
+      defaultHeaders: { 'Accept-Encoding': 'identity' },
+      maxRetries: 2,
     });
   }
 
