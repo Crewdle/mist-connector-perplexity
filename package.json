@@ -1,6 +1,6 @@
 {
   "name": "@crewdle/mist-connector-perplexity",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -26,8 +26,5 @@
     "@crewdle/web-sdk-types": "^1.0.58",
     "@types/node": "^22.0.0",
     "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "openai": "^4.76.1"
   }
 }
